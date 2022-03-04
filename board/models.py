@@ -10,7 +10,7 @@ class Question(models.Model):
 
 class Answer(models.Model):
     content = models.TextField()
-    creat_date = models.DateTimeField()
+    create_date = models.DateTimeField()
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
     def __str__(self):
