@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+설문 투표 결과
+{% endblock %}
+
+{% block content %}
+<div class="container my-4" >
+        <section>
+            <div class="alert alert-success" role="alert">
+            <h4>{{ question.question_text }}</h4>
+            </div>
+<!--            <ul>-->
+                {% for choice in question.choice_set.all %}
+                 <div class="alert alert-primary" role="alert">
+                    {{ choice.choice_text }} -- {{ choice.votes }}votes
+                </div>
+                {% endfor %}
+<!--            </ul>-->
+<!--            <p><button type="button" onclick="location.href='/poll/'">설문 목록</button></p>-->
+             <button type="submit" class="btn btn-success" onclick="location.href='/poll/'">설문 목록</button>
+        </section>
+<!--        <p><a href="{% url 'poll:index' %}">설문 목록</a></p>-->
+<!--        <p><button type="button" onclick="location.href='/poll/'">설문 목록</button></p>-->
+</div>
+{% endblock %}

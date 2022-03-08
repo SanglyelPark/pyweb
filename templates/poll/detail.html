@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}
+설문 투표
+{% endblock %}
+
+{% block content %}
+<div class="container my-3" >
+    <div class="alert alert-light" role="alert">
+           <section>
+                <form action="{% url 'poll:vote' question.id %}" method="post">
+                    {% csrf_token %}  <!-- 필수 입력(보안) -->
+                    <fieldset>
+                        <div class="alert alert-info" role="alert">
+                        <legend>{{ question.question_text }}</legend>
+                        </div>
+                        {% if error %}
+                            <p class="error">{{ error }}</p>
+                        {% endif %}
+                        {% for choice in question.choice_set.all %}
+                        <div class="alert alert-warning" role="alert">
+                            <input type="radio" name="choice" value="{{ choice.id }}">
+                            <label>{{ choice.choice_text }}</label>
+                        </div>
+                        {% endfor %}
+
+                    </fieldset>
+    <!--                <p><input type="submit" value="투표"></p>-->
+                    <button type="submit" class="btn btn-success">투표</button>
+                </form>
+            </section>
+    </div>
+</div>
+{% endblock %}
