@@ -11,9 +11,21 @@
             </div>
 <!--            <ul>-->
                 {% for choice in question.choice_set.all %}
-                 <div class="alert alert-primary" role="alert">
-                    {{ choice.choice_text }} -- {{ choice.votes }}votes
-                </div>
+                <ol class="list-group list-group-numbered">
+                <li class="list-group-item d-flex justify-content-between align-items-start my-3">
+                    <div class="ms-2 me-auto my-2">
+                        <div class="fw-bold">{{ choice.choice_text }}</div>
+                            The item Choice..
+                        </div>
+                    <button type="button" class="btn btn-primary my-3">votes
+                    <span class="badge bg-secondary">{{ choice.votes }}</span>
+                    </button>
+<!--                    <span class="badge bg-primary rounded-pill">{{ choice.votes }}votes</span>-->
+                </li>
+                </ol>
+<!--                 <div class="alert alert-primary" role="alert">-->
+<!--                    {{ choice.choice_text }} &#45;&#45; {{ choice.votes }}votes-->
+<!--                </div>-->
                 {% endfor %}
 <!--            </ul>-->
 <!--            <p><button type="button" onclick="location.href='/poll/'">설문 목록</button></p>-->

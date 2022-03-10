@@ -23,4 +23,5 @@ urlpatterns = [
     path('board/', include('board.urls')),  # 127.0.0.1:8000/board/  # board앱의 url를 포함시킴
     path('common/', include('common.urls')),  # 127.0.0.1:8000/common/
     path('poll/', include('poll.urls')),  # 127.0.0.1/poll/
+    path('book/', include('book.urls')),
 ]

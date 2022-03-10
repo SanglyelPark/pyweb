@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'board',   # models를 이용하여 테이블을 생성하려면 board/models.py 등록
     'common',
     'poll',
+    'book',
 ]
 
 MIDDLEWARE = [

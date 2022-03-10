@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
@@ -7,14 +8,20 @@ from board.forms import QuestionForm, AnswerForm
 
 def index(request):
     #인덱스 페이지
-    return render(request, 'board/index.html')
+    question_list = Question.objects.order_by('-pk')[:3]
+    context = {'question_list': question_list}
+    return render(request, 'board/index.html', context)
 
 def boardlist(request):
     #질문 목록
     question_list = Question.objects.order_by('-create_date')  #'-'내림 차순, -pk도 가능
     # question_list = Question.objects.all()  #db에서 전체 검색
-    return render(request, 'board/question_list.html',
-                  {'question_list':question_list})
+    # 페이지 처리
+    page = request.GET.get('page', '1')
+    paginator = Paginator(question_list, 10)    #페이지당 10개 자료
+    page_obj = paginator.get_page(page)
+    context = {'question_list': page_obj}
+    return render(request, 'board/question_list.html', context)
     # return HttpResponse("<h2>Hello~ Django!!</h2>")
 
 def detail(request, question_id):
@@ -24,7 +31,7 @@ def detail(request, question_id):
     context = {'question':question}
     return render(request, 'board/detail.html', context)
 
-@login_required(login_url='common:login')
+@login_required(login_url='common:login_view')
 def question_create(request):
     #질문 등록
     if request.method == "POST":
@@ -40,7 +47,7 @@ def question_create(request):
     context = {'form':form}
     return render(request, 'board/question_form.html', context)
 
-@login_required(login_url='common:login')
+@login_required(login_url='common:login_view')
 def answer_create(request, question_id):
     # 답변 등록
     question = get_object_or_404(Question, pk=question_id)
