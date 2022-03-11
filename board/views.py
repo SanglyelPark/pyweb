@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from board.models import Question, Answer
 from board.forms import QuestionForm, AnswerForm
+from django.contrib import messages
 
 def index(request):
     #인덱스 페이지
@@ -114,3 +115,13 @@ def answer_delete(request, answer_id):
     answer = Answer.objects.get(id=answer_id)
     answer.delete()
     return redirect('board:detail', question_id=answer.question.id)  # 상세페이지
+
+@login_required(login_url='common:login_view')
+def vote_question(request, question_id):
+    #질문 추천
+    question = Question.objects.get(id=question_id)
+    if request.user == question.author:
+        messages.error(request, "본인이 작성한 글은 추천할 수 없습니다.")
+    else:
+        question.voter.add(request.user)
+    return redirect('board:detail', question_id=question_id)

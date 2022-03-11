@@ -19,7 +19,8 @@
 <!--                    번호 : 전체게시물수 - 시작인덱스 - 현재인덱스 + 1-->
                     <td>{{ question_list.paginator.count|sub:question_list.start_index|sub:forloop.counter0|add:1 }}</td>
                     <td class="text-left px-3">
-                        <a href="{% url 'board:detail' question.id %}">{{ question.subject }}</a>
+                        <a href="{% url 'board:detail' question.id %}"
+                        class="text-decoration-none text-dark">{{ question.subject }}</a>
                     </td>
 
                     <td>{{ question.author }}</td>
