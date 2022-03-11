@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 
 from templates.common.forms import UserForm
@@ -17,6 +17,11 @@ def login_view(request):
 
     else:
         return render(request, 'common/login.html')
+
+def logout_view(request):
+    #로그 안웃 - 힘수형 view(FBV)
+    logout(request)
+    return redirect('board:index')
 
 def signup(request):
     if request.method =="POST":
