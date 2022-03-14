@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+자기 소개
+{% endblock %}
+
+{% block content %}
+<div class="container my-4" >
+    <div class="card">
+    <div class="alert alert-light my-1 p-1" role="alert">
+        <h4 class="card-title mt-3">
+        <img src=" {% static 'board/images/button.jpg' %}" class="img-fluid rounded-start" alt="photo"> 자기 소개</h4>
+    </div>
+    </div>
+
+    <div class="card my-1" >
+      <div class="row g-2">
+        <div class="col-md-3 p-4">
+          <img src="{% static 'board/images/myphoto.jpg' %}" class="img-fluid rounded-circle" alt="photo">
+        </div>
+        <div class="col-md-5">
+          <div class="card-body p-4">
+            <p class="card-text">사는 곳 : 중국 산동성 위해시 환취구 장춘진 </p>
+            <p class="card-text">하는 일 : 조선해운로지스(주) 중국지사 해외영업부 부장</p>
+            <p class="card-text">Homepage : <small class="text-muted"><a href="http://www.hesenglogis.com" target="_blank">www.hesenglogis.com</a></small></p>
+            <p class="card-text">Myblog : <small class="text-muted"><a href="https://blog.naver.com/slpark2000" target="_blank">blog.naver.com/slpark2000</a></small></p>
+            <p class="card-text">Git site : <small class="text-muted"><a href="http://github.com/sanglyelpark" target="_blank">github.com/SanglyelPark</a></small></p>
+            <p class="card-text"><small class="text-muted"><a>E-mail : slpark8888@gmail.com</a></small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-success my-2" role="alert">
+        <h4 class="alert-heading"> 학 력 </h4>
+        <p>동양미래대학교 전산OA과 졸업</p>
+        <hr>
+        <p class="mb-1">정보처리기사</p>
+        <p class="mb-1">워드프로세스2급</p>
+        <p class="mb-1">홈시어터 인스톨러, 고객만족을 위한 CS매뉴얼</p>
+        <p class="mb-1">영업프로 (디지탈마케터), 홈씨어터 전문가 과정</p>
+        <p class="mb-1">HSK(중국어수평고사) 3급 ,4급</p>
+    </div>
+
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading"> 경력 및 이수 </h4>
+        <p>(주)삼성전자 국내영업부 근무</p>
+        <hr>
+        <p class="mb-1">1996.2 ~ 2002.2 (주)삼성전자 국내영업본부 마케팅부 System Engineer</p>
+        <p class="mb-1">2002.3 ~ 2007.12 (주)디지털프라자 경영</p>
+        <p class="mb-1">2008.2 ~ 현재 조선해운로직스(주) 해외이사 사업부 중국지사</p>
+        <p class="mb-1">2022.1 ~ 2022.3 파이썬(Python)기반 웹프로그래밍 개발자 수강</p>
+    </div>
+
+
+
+<!--    <div class="col-md-2 p-2">-->
+<!--    <img src="{% static 'board/images/thank.gif' %}" class="img-fluid rounded-start" alt="감사">-->
+<!--    </div>-->
+</div>
+
+{% endblock %}
