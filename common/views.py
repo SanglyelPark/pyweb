@@ -23,11 +23,17 @@ def logout_view(request):
     logout(request)
     return redirect('board:index')
 
-def signup(request):
+def signup(request, ):
     if request.method =="POST":
         form = UserForm(request.POST)
         if form.is_valid():      # 유효성 검사
             form.save()              # db 저장
+
+            # 회원 가입후 자동 로그인
+            username = form.cleaned_data.get('username')   # 사용자 ID
+            password1 = form.cleaned_data.get('password1')  # 비밀번호
+            user = authenticate(username=username, password=password1)
+            login(request, user)
             return redirect('board:index')
     else:
         form = UserForm()

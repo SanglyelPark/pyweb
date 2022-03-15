@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+# 질문 모델
 class Question(models.Model):
     subject = models.CharField(max_length=200)
     content = models.TextField()
@@ -12,6 +13,7 @@ class Question(models.Model):
     def __str__(self):      # 데이터 조회시 id가 아니라 실제 제목을 보여줌
         return self.subject
 
+#답변 모델
 class Answer(models.Model):
     content = models.TextField()
     create_date = models.DateTimeField()
@@ -22,5 +24,17 @@ class Answer(models.Model):
     def __str__(self):
         return self.content    # 데이터 조회시 실제 내용을 보여줌
 
+# 댓글 모델
+class Comment(models.Model):
+    content = models.TextField()    # 댓글 내용
+    create_date = models.DateTimeField()   # 댓글 작성일
+    modify_date = models.DateTimeField(null=True, blank=True)   # 댓글 수정일
+    author = models.ForeignKey(User, on_delete=models.CASCADE)  # 외래키 - 댓글 글쓴이
+    question = models.ForeignKey(Question, null=True, blank=True,
+                                 on_delete=models.CASCADE)  # 댓글이 달린 질문
+    answer = models.ForeignKey(Answer, null=True, blank=True,
+                               on_delete=models.CASCADE)  # 댓글이 달린 답변
 
+    def __str__(self):
+        return self.content    # 데이터 조회시 실제 내용을 보여줌
 

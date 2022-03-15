@@ -16,10 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include  # include 함수를 포함하고
 from board import views     # 초기화면 연결 설정
+from board.views import base_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),     # 127.0.0.1:8000 초기화면 연결 설정
+    path('', base_views.index),     # 127.0.0.1:8000 초기화면 연결 설정
     path('board/', include('board.urls')),  # 127.0.0.1:8000/board/  # board앱의 url를 포함시킴
     path('common/', include('common.urls')),  # 127.0.0.1:8000/common/
     path('poll/', include('poll.urls')),  # 127.0.0.1/poll/
