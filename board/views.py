@@ -65,7 +65,7 @@ def answer_create(request, question_id):
             # return render(request, 'board:detail.html', question_id=question_id)
     else:
         form = AnswerForm()   # 비어있는 폼
-    context = {'question':question, 'form':form}
+    context = {'question': question, 'form': form}
     return render(request, 'board/detail.html', context)
 
 @login_required(login_url='common:login_view')
